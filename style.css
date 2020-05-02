@@ -7,7 +7,6 @@
  Jedeme retro cernobile, dnes barvy nepotrebujeme.
 */
 
-
 body {
     margin: 0;
     padding: 0;
@@ -17,27 +16,384 @@ body {
     line-height: 1.6;
 }
 
+a {
+    color:black;
+}
 
 /* HLAVICKA */
-
 .titulek {
-    font-family: 'Raleway', serif;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    font-size: 50px;
+}
+
+.hlavicka {
+    background-image: url(images/island-hlavicka.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+
+.autor {
+    font-style: italic;
+    opacity: 0.75;
+}
+
+/* MENU */
+.menu a {
+    color: grey;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    padding: 10px;
+    border-bottom: solid lightgrey 0.5px;
+    width: 100%;
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    padding: 30px 0 30px 0;
+    flex-wrap: wrap;
+}
+
+/* OBSAH */
+.bila-stranka {
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+}
+
+.text {
+    padding: 20px 30px 30px 30px;
+}
+
+.text h2, 
+.fotogalerie h2 {
+    margin: 0 0 16px 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+.obrazek {
+    margin: 15px 0;
+}
+
+.obrazek img,
+.foto img {
+    width: 100%;
+}
+
+.popisek {
+    text-align: center;
+    margin: 0;
+    color: grey;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+}
+
+.popisek a,
+footer a {
+    color: grey;
+}
+
+/* FOTOGALERIE */
+.foto {
+    margin-top: 20px;
+}
+
+.foto .popisek {
+    font-weight: bold;
+}
+
+.foto .popisek .popisek-copy {
+    font-weight: normal; /*poradi nebo specificita - TIMHLE PREBIJU PREDCHOZI PRIKAZ POUZE PRO VNORENE DITE POPISKU*/
+}
+
+.foto-nadpis {
+    padding-left: 30px;
+}
+
+.galerie {
+    margin-top: 30px;
+}
+
+/* PATICKA */
+footer {
+    background-color: #f5f5f5;
+    color: grey;
+    font-size: 10px;
+    padding: 0px 30px;
+    margin: 20px 0;
+}
+
+/* HOVER & PSEUDO */
+.menu a:hover,
+.menu a:focus,
+.popisek a:hover,
+.popisek a:focus,
+footer a:hover,
+footer a:focus {
+    color: black;
+}
+
+.hlavicka::before { /*zatemneni hlavicky*/
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.autor, /*timhle presunu nadpisy v hlavicce do popredi vuci zatemneni*/
+.perex,
+.titulek {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.autor::before { /*BILA CARA NAD AUTOREM, JUCH!*/
+    content: "";
+    border-top: white solid 2px;
+    display: block; 
+    position: relative; /*diky tomuhle se s tim da hybat*/
+    left: 50%; /*odsazeni 50% od leve strany (pulka sirky cele zobrazene stranky)*/
+    transform: translate(-50%); /*VYSTREDI TO FAKT DOPROSTRED - tady 50% znamena, ze se vrati po ose x zpet o pulku svoji vlastni sirky)*/
+    width: 70px;
+    margin: 35px 0 15px 0;
+} 
+
+h2::after { /*MODRE CARY POD NADPISY KAPITOL*/
+    content: "";
+    border: #1E90FF solid 3px;
+    display: block; 
+    position: relative;
+    left: -30px; /* záporné odsazení (shodne s paddingem/marginem) nebo translate (shodne s velikosti samotneho objektu) */
+    /* transform: translate(-30%); */
+    width: 100px;
+    margin: 20px 0 20px 0;
 }
 
 
+/* TABLET */
+@media (min-width: 500px) {
+
+/* HLAVICKA */
+.titulek {
+    font-size: 70px;
+}
+
+.text h2 {
+    font-size: 26px;
+}
+
 /* MENU */
+.menu {
+    flex-wrap: nowrap;
+    margin: 0 30px;
+}
 
+.menu a {
+    border-top: solid lightgrey 0.5px;
+    border-right: solid lightgrey 0.5px;
+    /* border-collapse: collapse; - asi funguje jen v tabulce, kterou jsem si nahradila navem ?*/
+}
 
+/*timhle se zbavim carky u posledni polozky vpravo v menu */
+.menu a:last-of-type {
+    border-right: solid lightgrey 0px;
+}
 
+/* OBSAH */ 
+/* timhle hodim popisek dovnitr obrazku */
+.obrazek {
+    position: relative;
+}
 
-/* OBSAH */
+.obrazek .popisek {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
 
-
-
+.obrazek .popisek a {
+    color: white;
+}
 
 /* FOTOGALERIE */
+.galerie {
+    display: flex;
+    flex-wrap: wrap;   
+}
+
+.foto {
+    flex: 0 1 50%; /* NULA - ZAKAZ ROZPINANI - necha volny desaty ramecek */
+    margin: 0;
+    position: relative;
+    overflow: hidden; /* DULEZITE PRO TRANSFORMOVANI - aby to nepretekalo ven pri zoomovani */
+}
+
+/* ZOOM IN FOTOGALERIE*/ 
+.fo-ga {
+    margin: 0;
+    padding: 0;
+    /* position: block; */
+    /* width: 100%; */
+    height: 100%; /* vim, ze vyska se nema specifikovat, ale delalo mi to tam mezeru (nesedela vyska .foto a .foto img] */
+    transition: all 3s ease-in-out;
+}
+
+ .foto:hover .fo-ga,
+ .foto:focus .fo-ga { 
+    transform: scale(1.25);
+}
+ 
+/* NASKOCI POPISEK*/ 
+.popisek-foto {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0; 
+    transform: translateY(50%); /* posune se po ose Y o pulku jeho vysky*/
+    transition: transform 3s ease-in-out; 
+    padding: 5px 0;
+}
+
+.foto:hover .popisek-foto,
+.foto:focus .popisek-foto { /*KDYŽ NAJEDU MYŠÍ NAD FOTO, TAK FOTO-POPISEK SE ZACHOVA TAKHLE...*/
+    transform: translateY(0); /* posune se do puvodni pozice */
+}
+
+.popisek-foto a {
+    color: white;
+}
+
+.bila-stranka {
+    padding-bottom: 0;
+}
+} /* od mediaquery-nemazat!!!!! */
 
 
+/* KOMPUTER */
+@media (min-width: 1000px) {
 
+.bila-stranka {
+width: 960px;
+margin: auto; /*vycentrovani*/
+transform: translateY(-40px); /*posunuti nahoru*/
+z-index: 1;
+padding-top: 20px;
+}
 
-/* PATICKA */
+/* HLAVICKA */
+.hlavicka {
+padding: 60px 30px 80px 30px; /*nutno zvetsit spodni padding - ZVETSI SE PLOCHA OBRAZKU */
+}
+
+.perex {
+    max-width: 700px;
+    margin: auto;
+}
+
+/* MENU */
+.menu a {
+   border-right: none;
+   border-top: none;
+   text-align: left;
+}
+
+.menu {
+    flex-wrap: wrap;
+    float: left;
+    max-width: 200px;
+    margin-left: 50px;
+}
+
+/* OBSAH */
+.uvod .text {
+    padding-left: 330px;
+    padding-right: 50px;
+}
+
+.obrazek .popisek {
+    right: 25px;
+    bottom: 25px;
+}
+
+.co-musite-videt {
+    margin-bottom: 20px;
+}
+
+/* MODRE CARY POD NADPISY KAPITOL */
+h2::after { 
+    left: -50px;   
+}
+
+/* LEVOPRAVE ODSAZOVANI */
+.proc .text {
+    padding-left: 50px;
+    padding-right: 250px;
+}
+
+.co-musite-videt .text {
+    padding-left: 250px;
+    padding-right: 50px;
+}
+
+.foto-nadpis {
+    padding-left: 50px;
+    padding-right: 250px;
+}
+
+/* FOTOGALERIE */ 
+.foto {
+    flex: 0 1 calc(100% / 3); /* timhle se rozdeli prostor mezi 3 obrazky*/
+}
+
+.popisek-foto {
+    transform: translateY(100%); /* posune se po ose Y o CELOU jeho vysku - zmena oproti tabletu */
+}
+
+/* ZKOUSKA jine TRANSITION - ZMENA BARVY OBRAZKU */ 
+.obrazek img:hover,
+.obrazek img:focus {
+    transition: all 3s ease-in-out; /* rychlost prechodu pro hover (najeti mysi) */
+    filter: none;
+}
+
+.obrazek img {
+    transition: all 1s ease-in-out; /* rychlost prechodu pri opusteni hover (odjeti mysi) */
+    filter: grayscale(50%);
+}
+
+.obrazek {
+    overflow: hidden;
+}
+
+/* TRANSFORM - ZOOM IN POZADI (+ textu) - jde to oddelit a zoomovat jen pozadi? */
+.hlavicka:hover,
+.hlavicka:focus {
+    transform: scale(1.15);
+    transition: all 5s ease-in-out;
+}
+
+.hlavicka {
+    transition: all 3s ease-in-out;
+}
+
+.uvnitr-hlavy{
+    overflow: hidden;
+}
+} /* od mediaquery-nemazat!!!!! */
